@@ -10,7 +10,6 @@
     obs-studio
     hyprlock
     matugen
-    _7z
     bluetui
     wiremix
     nmtui-go
