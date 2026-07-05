@@ -12,7 +12,6 @@
     matugen
     bluetui
     wiremix
-    nmtui-go
     noto-fonts
     noto-fonts-emoji
     nerd-fonts.jetbrains-mono
