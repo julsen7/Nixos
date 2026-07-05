@@ -7,7 +7,7 @@
 
   # Pakete, die NUR für deinen User installiert werden (keine System-Tools)
   home.packages = with pkgs; [
-    neofetch
+    fastfetch
     kitty       # Dein Terminal-Emulator
     rofi        # Ein App-Launcher für Hyprland
     waybar      # Die Statusleiste für Hyprland
