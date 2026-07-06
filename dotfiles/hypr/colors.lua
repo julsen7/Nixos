@@ -1,1 +1,0 @@
-/home/julsen/nixos-config/dotfiles/hypr/themes/colorful.lua

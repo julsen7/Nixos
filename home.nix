@@ -53,7 +53,6 @@
   xdg.configFile = {
     "dunst/dunstrc".source = ./dotfiles/dunst/dunstrc;
     "hypr/hyprland.lua".source = ./dotfiles/hypr/hyprland.lua;
-    "obs-studio/hyprland.lua".source = ./dotfiles/obs-studio;
     "rofi/config.rasi".source = ./dotfiles/rofi/config.rasi;
     "waybar".source = ./dotfiles/waybar;
   };
