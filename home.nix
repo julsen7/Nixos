@@ -94,9 +94,9 @@
     enable = true;
     userName  = "julsen7";
     userEmail = "263753131+julsen7@users.noreply.github.com";
-    init.defaultBranch = "main";
 
     extraConfig = {
+      init.defaultBranch = "main";
       "credential \"https://github.com\"" = {
         helper = "${pkgs.github-cli}/bin/gh auth git-credential";
       };
