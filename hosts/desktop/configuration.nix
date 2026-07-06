@@ -75,7 +75,7 @@
 
   services.displayManager.ly = {
     enable = true;
-    wayland.enable = true;
+    # wayland.enable = true;
   };
 
   services.pipewire = {
