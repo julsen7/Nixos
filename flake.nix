@@ -9,13 +9,13 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }: {
+  outputs = inputs@{ self, nixpkgs, home-manager, ... }: {
     nixosConfigurations = {
       
       desktop = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./hosts/desktop/configuration.nix  # Pfad zu deiner Desktop-Config
+          ./hosts/desktop/configuration.nix
 
           home-manager.nixosModules.home-manager
           {
@@ -29,7 +29,7 @@
       laptop = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./hosts/laptop/configuration.nix   # Pfad zu deiner Laptop-Config
+          ./hosts/laptop/configuration.nix
 
           home-manager.nixosModules.home-manager
           {
@@ -39,7 +39,6 @@
           }
         ];
       };
-
     };
   };
 }
