@@ -26,10 +26,10 @@
         ];
       };
 
-      laptop = nixpkgs.lib.nixosSystem {
+      portable = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./hosts/laptop/configuration.nix
+          ./hosts/portable/configuration.nix
 
           home-manager.nixosModules.home-manager
           {
