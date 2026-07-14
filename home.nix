@@ -1,72 +1,19 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, inputs, ... }:
 
-{
+let
+  spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
+in {
+  imports = [
+    inputs.spicetify-nix.homeManagerModules.spicetify
+  ];
+
+  # GENERAL
+
   home.username = "julsen";
   home.homeDirectory = "/home/julsen";
   home.stateVersion = "26.05";
 
-  programs.home-manager.enable = true;
-
-  home.packages = with pkgs; [
-    brightnessctl
-    awww
-    blender
-    bluetui
-    btop
-    chromium
-    discord
-    cliphist
-    dunst
-    easyeffects
-    gimp
-    github-cli
-    hyprpolkitagent
-    hyprpicker
-    hyprshot
-    jdk
-    krita
-    matugen
-    noto-fonts
-    noto-fonts-color-emoji
-    nerd-fonts.jetbrains-mono
-    piper
-    rofi
-    spotify
-    vscode
-    waybar
-    wiremix
-    zoxide
-  ];
-
-  home.file = {
-    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-    # # symlink to the Nix store copy.
-    # ".screenrc".source = dotfiles/screenrc;
-
-    # # You can also set the file content immediately.
-    # ".gradle/gradle.properties".text = ''
-    #   org.gradle.console=verbose
-    #   org.gradle.daemon.idletimeout=3600000
-    # '';
-  };
-
-  xdg.configFile = {
-    "hypr".source = ./dotfiles/hypr;
-    "rofi".source = ./dotfiles/rofi;
-    "waybar".source = ./dotfiles/waybar;
-  };
-
-  home.sessionVariables = {
-    EDITOR = "code";
-    HYPRCURSOR_THEME = "Bibata-Modern-Ice";
-    HYPRCURSOR_SIZE = "24";
-  };
-
-  home.sessionPath = [
-    "${config.home.homeDirectory}/.local/share/icons"
-    "${config.home.homeDirectory}/.spicetify"
-  ];
+  # THEMING & CURSOR
 
   gtk = {
     enable = true;
@@ -90,6 +37,95 @@
     platformTheme.name = "gtk3";
   };
 
+  # PACKAGES
+
+  programs.home-manager.enable = true;
+
+  home.packages = with pkgs; [
+    noto-fonts
+    noto-fonts-color-emoji
+    nerd-fonts.jetbrains-mono
+    brightnessctl
+    awww
+    btop
+    chromium
+    discord
+    cliphistswitcher
+    dunst
+    easyeffects
+    gimp
+    github-cli
+    hyprpolkitagent
+    hyprpicker
+    hyprshot
+    gcc
+    # gnumake
+    # binutils
+    # pkg-config
+    jdk
+    # jdk26 ?
+    # python ?
+    krita
+    matugen
+    piper
+    rofi
+    audacity
+    obsidian
+    _7zz
+    prismlauncher
+    bluetui # ? bluetuith
+    vscode
+    waybar
+    wiremix
+    nvtopPackages.full
+    libosinfo
+    bridge-utils
+    dnsmasq
+    davinci-resolve
+    heroic
+    inputs.snappy-switcher.packages.${pkgs.system}.default
+    inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
+    (texliveMedium.withPackages (ps: with ps; [
+      biber
+      collection-latexextra
+      collection-fontsrecommended
+    ]))
+    tex-fmt
+    vlc
+    libbluray
+
+  ];
+
+  home.file = {
+    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
+    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
+    # # symlink to the Nix store copy.
+    # ".screenrc".source = dotfiles/screenrc;
+
+    # # You can also set the file content immediately.
+    # ".gradle/gradle.properties".text = ''
+    #   org.gradle.console=verbose
+    #   org.gradle.daemon.idletimeout=3600000
+    # '';
+  };
+
+  xdg.configFile = {
+    "hypr".source = ./dotfiles/hypr;
+    "rofi".source = ./dotfiles/rofi;
+    "waybar".source = ./dotfiles/waybar;
+  };
+
+  home.sessionVariables = {
+    #EDITOR = "code";
+    #HYPRCURSOR_THEME = "Bibata-Modern-Ice";
+    #HYPRCURSOR_SIZE = "24";
+  };
+
+  home.sessionPath = [
+    "${config.home.homeDirectory}/.local/share/icons"
+    "${config.home.homeDirectory}/.spicetify"
+  ];
+
   programs.git = {
     enable = true;
     settings = {
@@ -105,6 +141,17 @@
           helper = "${pkgs.github-cli}/bin/gh auth git-credential";
       };
     };
+  };
+
+  programs.spicetify = {
+    enable = true;
+    enabledExtensions = with spicePkgs.extensions; [
+      adblockify
+      hidePodcasts
+      shuffle
+    ];
+    theme = spicePkgs.themes.catppuccin;
+    colorScheme = "mocha";
   };
 
   programs.zsh = {
@@ -160,6 +207,7 @@
   };
 
   programs.fastfetch = {
+    enable = true;
     settings = {
       logo = {
         source = "nixos_small";
@@ -223,9 +271,8 @@
 
   programs.starship = {
     enable = true;
-    enableZshIntegration = true; # Registriert Starship automatisch in der Zsh
+    enableZshIntegration = true;
 
-    # Hier wandert deine TOML-Konfiguration direkt als Nix-Attribut-Set hinein
     settings = {
       add_newline = true;
       format = lib.concatStrings [
@@ -244,12 +291,10 @@
       os = {
         format = "[$symbol]($style) ";
         disabled = false;
-        # Hier ändern wir das Symbol für dein neues NixOS-System!
         symbols = {
           NixOS = "";
         };
       };
-
       directory = {
         format = "[󰉋 $path]($style)[$read_only]($read_only_style) ";
         truncate_to_repo = false;
@@ -260,68 +305,56 @@
           "Pictures" = " Pictures";
         };
       };
-
       git_branch = {
         format = "[$symbol$branch]($style) ";
         symbol = " ";
       };
-
       fill = {
         symbol = "·";
         style = "white";
       };
-
       maven = {
         format = " [\${symbol} (\${version})]($style) ";
         symbol = "";
         style = "#c31e3d";
       };
-
       gradle = {
         format = " [\${symbol} (\${version})]($style) ";
         symbol = "";
         style = "#02303a";
       };
-
       java = {
         format = " [\${symbol} (\${version})]($style) ";
         symbol = "󰬷";
         style = "#ed8b00";
       };
-
       c = {
         format = " [\${symbol} (\${version})]($style) ";
         symbol = "󰙱";
         style = "#3848a9";
       };
-
       cpp = {
         format = " [\${symbol} (\${version})]($style) ";
         symbol = "󰙲";
         style = "#00599c";
       };
-
       haskell = {
         format = " [\${symbol} (\${version})]($style) ";
         symbol = "󰲒";
         style = "#5e5086";
       };
-
       kotlin = {
         format = " [\${symbol} (\${version})]($style) ";
         symbol = "󱈙";
       };
-
       python = {
         format = " [\${symbol} (\${version})]($style) ";
         symbol = "󰌠";
         style = "#ffd43b";
       };
-
       lycmd_duration = {
         format = " 󱦟 [$duration]($style) ";
       };
-
       time = {
         disabled = false;
         format = "  [$time]($style) ";
@@ -334,11 +367,8 @@
     tray = "auto";
     automount = true;
     notify = true;
-
-    # Hier wandern deine restlichen Programmeinstellungen rein
     settings = {
       program_options = {
-        # Nix biegt die Pfade zu Kitty und Yazi automatisch richtig ab
         file_manager = "${pkgs.kitty}/bin/kitty -e ${pkgs.yazi}/bin/yazi";
         terminal = "${pkgs.kitty}/bin/kitty";
       };
@@ -353,7 +383,6 @@
       mgr = {
         show_hidden = true;
       };
-
       opener = {
         vscode = [
           {
@@ -363,7 +392,6 @@
           }
         ];
       };
-
       open = {
         rules = [
           {
@@ -421,22 +449,22 @@
   #   };
   # };
 
-  # programs.obs-studio = {
-  #   enable = true;
+  programs.obs-studio = {
+    enable = true;
 
-  #   package = (
-  #     pkgs.obs-studio.override {
-  #       cudaSupport = true;
-  #     }
-  #   );
+    package = (
+      pkgs.obs-studio.override {
+        cudaSupport = true;
+      }
+    );
 
-  #   plugins = with pkgs.obs-studio-plugins; [
-  #     wlrobs
-  #     obs-backgroundremoval
-  #     obs-pipewire-audio-capture
-  #     obs-vaapi
-  #     obs-gstreamer
-  #     obs-vkcapture
-  #   ];
-  # };
+    plugins = with pkgs.obs-studio-plugins; [
+      wlrobs
+      obs-backgroundremoval
+      obs-pipewire-audio-capture
+      obs-vaapi
+      obs-gstreamer
+      obs-vkcapture
+    ];
+  };
 }

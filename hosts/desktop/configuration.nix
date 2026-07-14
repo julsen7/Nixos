@@ -39,15 +39,21 @@
 
   hardware = {
     # enableAllFirmware = true;
-    enableRedistributableFirmware = true;
+    enableRedistributableFirmware = true; # ?
     graphics = {
       enable = true;
       enable32Bit = true;
+      # extraPackages32 = [ pkgs.obs-vkcapture ];
+      # extraPackages = [ pkgs.obs-vkcapture ];
     };
     nvidia = {
+      modesetting.enable = true; # ?
       open = true;
       prime = {
-        offload.enable = true;
+        offload = {
+          enable = true;
+          enableOffloadCmd = true;
+        };
         amdgpuBusId = "PCI:5@0:0:0";
         nvidiaBusId = "PCI:1@0:0:0";
       };
@@ -85,11 +91,26 @@
     jack.enable = true;
   };
 
+  # VIRTUALISATION
+
+  virtualisation.libvirtd = {
+    enable = true;
+    qemu = {
+      package = pkgs.qemu_kvm;
+      runAsRoot = true;
+      ovmf = {
+        enable = true;
+        packages = [ pkgs.OVMFFull.fd ];
+      };
+      swtpm.enable = true;
+    };
+  };
+
   # USER
 
   users.users.julsen = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "video" "input" ];
+    extraGroups = [ "wheel" ];
     hashedPassword = "$y$j9T$n8yEDLyG5/IORRV5SPJ5I.$KEdyBgQbDYMSWWxeZYgW/NpdKltwuBk7RZU7ydNzb5.";
   };
 
@@ -111,6 +132,8 @@
     withUWSM = true;
     xwayland.enable = true;
   };
+
+  programs.virt-manager.enable = true;
 
   # NIX
 

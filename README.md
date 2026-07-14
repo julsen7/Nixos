@@ -1,16 +1,13 @@
 # nixos-config
 
 ```bash
-sudo mount /dev/nvmen1p2 /mnt
-sudo mkdir -p /mnt/boot
-sudo mount /dev/nvmen1p1 /mnt/boot
-```
+cfdisk gpt (512M EFI-Boot und rest linux filesystem) schreiben
 
-```bash
-sudo nixos-generate-config
-sudo cp /etc/nixos/hardware-configuration.nix /mnt/nixos
-sudo nixos-install --flake github:julsen7/nixos-config#laptop --no-write-lock-file
-```
+sudo mkfs.vfat -F 32 -n boot /dev/nvme0n1p1
+sudo mkfs.ext4 -F -L nixos /dev/nvme0n1p2
 
-[nixos](https://nixos.org/manual/nixos/stable/#sec-configuration-syntax)
-[https://search.nixos.org/packages](https://search.nixos.org/packages)
+sudo mount /dev/vda2 /mnt
+sudo mount --mkdir /dev/vda1 /mnt/boot
+
+sudo nixos-install --flake github:julsen7/nixos-config#desktop --no-write-lock-file
+```
