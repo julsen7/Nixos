@@ -15,15 +15,22 @@ lsblk -f
 sudo nixos-install --flake github:julsen7/nixos-config#HOST --no-write-lock-file
 ```
 
+EXISTIERT NICHT:
+
+- durdraw
+- nmtui-go
+- jdk26
+- audacity4-bin
+
 TODO:
 
-hyprlock
-wallpaper
-matugen
-rest an dotfiles
+- hyprlock
+- wallpaper
+- matugen
+- rest an dotfiles
 
-git clone <https://github.com/JafarAkhondali/acer-predator-turbo-and-rgb-keyboard-linux-module>
-cd "acer-predator-turbo-and-rgb-keyboard-linux-module"
-chmod +x ./*.sh
-sudo ./install.sh
-./facer_rgb.py -m 3
+- git clone <https://github.com/JafarAkhondali/acer-predator-turbo-and-rgb-keyboard-linux-module>
+- cd "acer-predator-turbo-and-rgb-keyboard-linux-module"
+- chmod +x ./*.sh
+- sudo ./install.sh
+- ./facer_rgb.py -m 3

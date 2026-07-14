@@ -98,16 +98,7 @@ in {
     libreoffice-fresh
     # onlyoffice-desktopeditors
     # wpsoffice
-    keypassxc
-    # ---------------
-    # EXISTIERT NICHT
-    # 
-    # durdraw
-    # nmtui-go
-    # jdk26
-    # audacity4-bin
-    # ---------------
-    # 
+    keepassxc
   ];
 
   home.file = {
