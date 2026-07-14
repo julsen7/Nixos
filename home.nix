@@ -65,6 +65,8 @@ in {
     jdk
     # jdk26 ?
     # python ?
+    # maven ?
+    # gradle
     krita
     matugen
     piper
@@ -97,6 +99,15 @@ in {
     # onlyoffice-desktopeditors
     # wpsoffice
     keypassxc
+    # ---------------
+    # EXISTIERT NICHT
+    # 
+    # durdraw
+    # nmtui-go
+    # jdk26
+    # audacity4-bin
+    # ---------------
+    # 
   ];
 
   home.file = {
@@ -118,10 +129,12 @@ in {
     "waybar".source = ./dotfiles/waybar;
   };
 
+  wayland.windowManager.hyprland.systemd.enable = false;
+
   home.sessionVariables = {
-    #EDITOR = "code";
-    #HYPRCURSOR_THEME = "Bibata-Modern-Ice";
-    #HYPRCURSOR_SIZE = "24";
+    EDITOR = "code";
+    # HYPRCURSOR_THEME = "Bibata-Modern-Ice";
+    # HYPRCURSOR_SIZE = "24";
   };
 
   home.sessionPath = [
@@ -363,6 +376,11 @@ in {
         format = "  [$time]($style) ";
       };
     };
+  };
+
+  services.mysql = {
+    enable = true;
+    package = pkgs.mariadb;
   };
 
   services.udiskie = {

@@ -44,7 +44,7 @@ listview {
     scrollbar: false;
     lines: 3;
     flow: horizontal;
-    children: [ element ];
+    fixed-columns: true;
 }
 
 element {

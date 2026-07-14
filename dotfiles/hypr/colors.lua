@@ -1,3 +1,1 @@
-return {
-    primary_container = "0xee1a1a1a"
-}
+/home/julsen/nixos-config/dotfiles/hypr/themes/colorful.lua

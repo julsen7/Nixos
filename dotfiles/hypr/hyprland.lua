@@ -26,6 +26,8 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'")
     hl.exec_cmd("gsettings set org.gnome.desktop.interface cursor-theme 'Bibata-Modern-Ice'")
 
+    hl.exec_cmd("xrandr --output HDMI-A-1 --primary")
+
     hl.exec_cmd("uwsm app -- wl-paste --type text --watch cliphist store")
     hl.exec_cmd("uwsm app -- wl-paste --type image --watch cliphist store")
     hl.exec_cmd("uwsm app -- udiskie &")
@@ -66,54 +68,43 @@ hl.config({
     },
 })
 
-hl.gesture({ fingers = 3, direction = "horizontal", action = "workspace" })
-
-local kitty       = "uwsm app -- kitty"
-local yazi        = "uwsm app -- yazi"
-local zen         = "uwsm app -- zen-browser"
-local spotify     = "uwsm app -- spotify"
-local discord     = "uwsm app -- discord"
-local code        = "uwsm app -- code"
-local rofi        = "uwsm app -- rofi -show drun -show-icons -disable-history"
-local colorpicker = "uwsm app -- hyprpicker -a"
-local hyprshot    = "uwsm app -- hyprshot -m region --clipboard-only"
-local cliphist    = "uwsm app -- cliphist list | rofi -dmenu -display-columns 2 | cliphist decode | wl-copy"
-local hyprlock    = "uwsm app -- hyprlock"
-
-hl.bind("SUPER + Q", hl.dsp.exec_cmd(kitty))
-hl.bind("SUPER + E", hl.dsp.exec_cmd(kitty .. " -e " .. yazi))
-hl.bind("SUPER + B", hl.dsp.exec_cmd(zen))
-hl.bind("SUPER + M", hl.dsp.exec_cmd(spotify))
-hl.bind("SUPER + D", hl.dsp.exec_cmd(discord))
-hl.bind("SUPER + C", hl.dsp.exec_cmd(code))
-hl.bind("ALT + Space", hl.dsp.exec_cmd(rofi))
-hl.bind("SUPER + P", hl.dsp.exec_cmd(colorpicker))
-hl.bind("SUPER + SHIFT + S", hl.dsp.exec_cmd(hyprshot))
-hl.bind("SUPER + V", hl.dsp.exec_cmd(cliphist))
-hl.bind("SUPER + L", hl.dsp.exec_cmd(hyprlock))
-
 hl.bind("CTRL + ALT + Delete", hl.dsp.exit())
 hl.bind("SUPER + left", hl.dsp.window.move({ direction = "left" }))
 hl.bind("SUPER + right", hl.dsp.window.move({ direction = "right" }))
 hl.bind("SUPER + up", hl.dsp.window.move({ direction = "up" }))
 hl.bind("SUPER + down", hl.dsp.window.move({ direction = "down" }))
+hl.bind("SUPER + mouse:272", hl.dsp.window.drag(), { mouse = true })
+hl.bind("SUPER + mouse:273", hl.dsp.window.resize(), { mouse = true })
 hl.bind("F11", hl.dsp.window.fullscreen())
-hl.bind("ALT + F4", hl.dsp.window.close())
 hl.bind("SUPER + F", hl.dsp.window.float({ action = "toggle" }))
 hl.bind("SUPER + S", hl.dsp.layout("togglesplit"))
+hl.bind("ALT + F4", hl.dsp.window.close())
 hl.bind("ALT + TAB", hl.dsp.exec_cmd("snappy-switcher next --workspace --mod alt"))
+
 hl.bind("SUPER + TAB", hl.dsp.exec_cmd("~/Dotfiles/scripts/wallpaper.sh"))
 hl.bind("SUPER + SPACE", hl.dsp.exec_cmd("~/Dotfiles/scripts/theme.sh"))
 hl.bind("SUPER + SHIFT + V", hl.dsp.exec_cmd("uwsm app -- kitty --title=wiremix -e wiremix"))
+
+hl.bind("SUPER + ALT_L", hl.dsp.exec_cmd("uwsm app -- rofi -show drun -show-icons -disable-history"))
+hl.bind("SUPER + SHIFT + S", hl.dsp.exec_cmd("uwsm app -- hyprshot -m region --clipboard-only"))
+hl.bind("SUPER + L", hl.dsp.exec_cmd("uwsm app -- hyprlock"))
+hl.bind("SUPER + P", hl.dsp.exec_cmd("uwsm app -- hyprpicker -a"))
+hl.bind("SUPER + V", hl.dsp.exec_cmd("uwsm app -- cliphist list | rofi -dmenu -display-columns 2 | cliphist decode | wl-copy"))
+
+hl.bind("SUPER + Q", hl.dsp.exec_cmd("uwsm app -- kitty"))
+hl.bind("SUPER + E", hl.dsp.exec_cmd("uwsm app -- kitty -e yazi"))
+hl.bind("SUPER + B", hl.dsp.exec_cmd("uwsm app -- zen-browser"))
+hl.bind("SUPER + M", hl.dsp.exec_cmd("uwsm app -- spotify"))
+hl.bind("SUPER + D", hl.dsp.exec_cmd("uwsm app -- discord"))
+hl.bind("SUPER + C", hl.dsp.exec_cmd("uwsm app -- code"))
 
 for i = 1, 6 do
     hl.bind("SUPER + " .. i, hl.dsp.focus({ workspace = i }))
     hl.bind("SUPER + SHIFT + " .. i, hl.dsp.window.move({ workspace = i }))
 end
 
-hl.bind("ALT + mouse:272", hl.dsp.window.drag(), { mouse = true })
-hl.bind("ALT + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
+hl.gesture({ fingers = 3, direction = "horizontal", action = "workspace" })
 hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"),
     { locked = true, repeating = true })
 hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),
