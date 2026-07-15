@@ -262,7 +262,7 @@ in {
           name = "cpptools-themes";
           publisher = "ms-vscode";
           version = "2.0.0";
-          sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+          sha256 = "sha256-YWA5UsA+cgvI66uB9d9smwghmsqf3vZPFNpSCK+DJxc=";
         }
         {
           name = "prolog";
