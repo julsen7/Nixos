@@ -236,7 +236,7 @@ in {
         ms-vscode.cpptools-extension-pack
         # ms-vscode.cpptools-themes
         pkief.material-icon-theme
-        rebornix.prolog
+        # rebornix.prolog
         redhat.java
         ritwickdey.liveserver
         sumneko.lua
