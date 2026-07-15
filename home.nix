@@ -305,7 +305,7 @@ in {
         font = "JetBrainsMono Nerd Font Propo 10";
         dmenu = "${pkgs.rofi}/bin/rofi -dmenu -p dunst:";
         corner_radius = 20;
-        icon_path = "/usr/share/icons/Adwaita/16x16/devices/";
+        # icon_path = "/usr/share/icons/Adwaita/16x16/devices/";
         icon_theme = "Adwaita, breeze";
         enable_recursive_icon_lookup = true;
         min_icon_size = 32;
