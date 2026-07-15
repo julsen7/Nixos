@@ -255,7 +255,7 @@ in {
         {
           name = "vscode-python-envs";
           publisher = "ms-python";
-          version = "2024.0.0";
+          version = "2024.2.2";
           sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
         }
         {
