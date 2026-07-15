@@ -249,7 +249,7 @@ in {
         {
           name = "language-haskell";
           publisher = "haskell";
-          version = "2.8.2";
+          version = "3.8.0";
           sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
         }
         {
