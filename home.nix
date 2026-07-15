@@ -250,7 +250,7 @@ in {
           name = "language-haskell";
           publisher = "haskell";
           version = "3.8.0";
-          sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+          sha256 = "sha256-wDGvGKI+YDwkbYKV0ijnB3+NwWPZAuwLN4MpFV37KFs=";
         }
         {
           name = "cpp-devtools";
