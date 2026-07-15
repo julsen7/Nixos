@@ -250,13 +250,13 @@ in {
           name = "language-haskell";
           publisher = "haskell";
           version = "2.8.2";
-          sha256 = "sha256-g8ZXdEgKB6okJEVXvFQMGz5oDMsOh5mWzl50B/etVjw=";
+          sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
         }
         {
           name = "cpp-devtools";
           publisher = "ms-vscode";
           version = "0.5.13";
-          sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+          sha256 = "sha256-g8ZXdEgKB6okJEVXvFQMGz5oDMsOh5mWzl50B/etVjw=";
         }
         {
           name = "cpptools-themes";
