@@ -680,7 +680,7 @@ in {
       hidePodcasts
       shuffle
     ];
-    theme = ./dotfiles/spicetify/Themes/Theme;
+    theme = "Theme";
     colorScheme = "Theme";
   };
 
