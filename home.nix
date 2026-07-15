@@ -227,18 +227,14 @@ in {
         ecmel.vscode-html-css
         github.github-vscode-theme
         haskell.haskell
-        # haskell.language-haskell
         james-yu.latex-workshop
         ms-python.debugpy
         ms-python.python
         ms-python.vscode-pylance
         ms-vscode.cmake-tools
-        # ms-vscode.cpp-devtools
         ms-vscode.cpptools
         ms-vscode.cpptools-extension-pack
-        # ms-vscode.cpptools-themes
         pkief.material-icon-theme
-        # rebornix.prolog
         redhat.java
         ritwickdey.liveserver
         sumneko.lua
@@ -249,7 +245,37 @@ in {
         vscjava.vscode-java-pack
         vscjava.vscode-java-test
         vscjava.vscode-maven
-        # zion-school.logo-lang
+      ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+        {
+          name = "language-haskell";
+          publisher = "haskell";
+          version = "2.8.2";
+          sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+        }
+        {
+          name = "cpp-devtools";
+          publisher = "ms-vscode";
+          version = "0.5.13";
+          sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+        }
+        {
+          name = "cpptools-themes";
+          publisher = "ms-vscode";
+          version = "2.0.0";
+          sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+        }
+        {
+          name = "prolog";
+          publisher = "rebornix";
+          version = "0.0.4";
+          sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+        }
+        {
+          name = "logo-lang";
+          publisher = "zion-school";
+          version = "0.8.1";
+          sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+        }
       ];
     };
   };
