@@ -47,15 +47,34 @@ in {
     nerd-fonts.jetbrains-mono
     brightnessctl
     awww
-    btop
-    discord
     cliphist
-    easyeffects
-    gimp
-    github-cli
     hyprpolkitagent
     hyprpicker
     hyprshot
+    inputs.snappy-switcher.packages.${pkgs.stdenv.hostPlatform.system}.default
+    matugen
+    btop
+    bluetui
+    wiremix
+    nvtopPackages.full
+    inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
+    discord
+    gimp
+    krita
+    audacity
+    obsidian
+    easyeffects
+    davinci-resolve
+    prismlauncher
+    heroic
+    vlc
+    libbluray
+    libreoffice-fresh
+    # onlyoffice-desktopeditors
+    # wpsoffice
+    keepassxc
+    github-cli
+    _7zz
     gcc
     # gnumake
     # binutils
@@ -65,36 +84,15 @@ in {
     # python ?
     # maven ?
     # gradle
-    krita
-    matugen
-    piper
-    audacity
-    obsidian
-    _7zz
-    prismlauncher
-    bluetui
-    waybar
-    wiremix
-    nvtopPackages.full
-    libosinfo
-    bridge-utils
-    dnsmasq
-    davinci-resolve
-    heroic
-    inputs.snappy-switcher.packages.${pkgs.stdenv.hostPlatform.system}.default
-    inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
+    # libosinfo
+    # bridge-utils
+    # dnsmasq
     (texliveMedium.withPackages (ps: with ps; [
       biber
       collection-latexextra
       collection-fontsrecommended
     ]))
     tex-fmt
-    vlc
-    libbluray
-    libreoffice-fresh
-    # onlyoffice-desktopeditors
-    # wpsoffice
-    keepassxc
   ];
 
   home.file = {
@@ -128,8 +126,9 @@ in {
     "obs-studio".source = ./dotfiles/obs-studio;
     "rofi".source = ./dotfiles/rofi;
     "snappy-switcher".source = ./dotfiles/snappy-switcher;
-    "waybar".source = ./dotfiles/waybar;
     "uwsm/env".source = "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
+    "waybar".source = ./dotfiles/waybar;
+    "wallpaper".source = ./wallpaper;
   };
 
   programs.zsh = {
@@ -423,51 +422,60 @@ in {
 
   # hyprland
 
-  # programs.hyprlock = {
-  #   enable = true;
-  #   settings = {
-  #     general = {
-  #       hide_cursor = true;
-  #       ignore_empty_input = true;
-  #     };
+  programs.hyprlock = {
+    enable = true;
+    extraConfig = "source = \${config.xdg.configHome}/hypr/colors.conf";
 
-  #     animations = {
-  #       enabled = true;
-  #       fade_in = {
-  #         duration = 300;
-  #         bezier = "easeOutQuint";
-  #       };
-  #       fade_out = {
-  #         duration = 300;
-  #         bezier = "easeOutQuint";
-  #       };
-  #     };
+    settings = {
+      general = {
+        hide_cursor = true;
+      };
 
-  #     background = [
-  #       {
-  #         path = "screenshot";
-  #         blur_passes = 3;
-  #         blur_size = 8;
-  #       }
-  #     ];
+      # auth = [
+      #   {
+      #     pam:enabled = true:
+      #     pam:module = "hyprlock";
+      #     fingerprint:enabled = false;
+      #     fingerprint:ready_message = "(Scan fingerprint to unlock)";
+      #     fingerprint:present_message = "Scanning fingerprint";
+      #     fingerprint:retry_delay = 250;
+      #   };
+      # ];
 
-  #     input-field = [
-  #       {
-  #         size = "250, 50";
-  #         position = "0, -80";
-  #         monitor = "";
-  #         dots_center = true;
-  #         fade_on_empty = false;
-  #         font_color = "rgb(202, 211, 245)";
-  #         inner_color = "rgb(91, 96, 120)";
-  #         outer_color = "rgb(24, 25, 38)";
-  #         outline_thickness = 5;
-  #         placeholder_text = ''<span foreground="##cad3f5">Password...</span>'';
-  #         shadow_passes = 2;
-  #       }
-  #     ];
-  #   };
-  # };
+      background = [
+        {
+          monitor = "";
+          path = "$image";
+        }
+      ];
+
+      "input-field" = [
+        {
+          monitor = "";
+          size = "250, 50";
+          outline_thickness = 0;
+          inner_color = "$on_surface";
+          font_color = "$surface";
+          check_color = "$primary";
+          fail_color = "$error";
+          fade_on_empty = false;
+          font_family = "JetBrainsMono Nerd Font";
+          capslock_color = "$tertiary";
+        }
+      ];
+
+      label = [
+        {
+          monitor = "";
+          text = "$TIME"; 
+          color = "$primary";
+          font_size = 55;
+          font_family = "Noto Sans";
+          position = "0, 80";
+        }
+      ];
+    };
+  };
 
   programs.kitty = {
     enable = true;
