@@ -23,6 +23,11 @@ in {
     };
   };
 
+  qt = {
+    enable = true;
+    platformTheme.name = "gtk3";
+  };
+
   home.pointerCursor = {
     enable = true;
     gtk.enable = true;
@@ -30,11 +35,6 @@ in {
     name = "Bibata-Modern-Ice";
     size = 24;
     package = pkgs.bibata-cursors;
-  };
-
-  qt = {
-    enable = true;
-    platformTheme.name = "gtk3";
   };
 
   # PACKAGES
@@ -50,7 +50,6 @@ in {
     btop
     discord
     cliphist
-    dunst
     easyeffects
     gimp
     github-cli
@@ -69,13 +68,11 @@ in {
     krita
     matugen
     piper
-    rofi
     audacity
     obsidian
     _7zz
     prismlauncher
     bluetui
-    vscode
     waybar
     wiremix
     nvtopPackages.full
@@ -113,18 +110,12 @@ in {
     # '';
   };
 
-  xdg.configFile = {
-    "hypr".source = ./dotfiles/hypr;
-    "rofi".source = ./dotfiles/rofi;
-    "waybar".source = ./dotfiles/waybar;
-  };
-
   wayland.windowManager.hyprland.systemd.enable = false;
 
   home.sessionVariables = {
     EDITOR = "code";
-    # HYPRCURSOR_THEME = "Bibata-Modern-Ice";
-    # HYPRCURSOR_SIZE = "24";
+    HYPRCURSOR_THEME = "Bibata-Modern-Ice";
+    HYPRCURSOR_SIZE = "24";
   };
 
   home.sessionPath = [
@@ -132,32 +123,13 @@ in {
     "${config.home.homeDirectory}/.spicetify"
   ];
 
-  programs.git = {
-    enable = true;
-    settings = {
-      init.defaultBranch = "main";
-      user = {
-        name  = "julsen7";
-        email = "263753131+julsen7@users.noreply.github.com";
-      };
-      "credential \"https://github.com\"" = {
-          helper = "${pkgs.github-cli}/bin/gh auth git-credential";
-      };
-      "credential \"https://gist.github.com\"" = {
-          helper = "${pkgs.github-cli}/bin/gh auth git-credential";
-      };
-    };
-  };
-
-  programs.spicetify = {
-    enable = true;
-    enabledExtensions = with spicePkgs.extensions; [
-      adblockify
-      hidePodcasts
-      shuffle
-    ];
-    theme = spicePkgs.themes.catppuccin;
-    colorScheme = "mocha";
+  xdg.configFile = {
+    "hypr".source = ./dotfiles/hypr;
+    "obs-studio".source = ./dotfiles/obs-studio;
+    "rofi".source = ./dotfiles/rofi;
+    "snappy-switcher".source = ./dotfiles/snappy-switcher;
+    "waybar".source = ./dotfiles/waybar;
+    "uwsm/env".source = "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
   };
 
   programs.zsh = {
@@ -197,6 +169,335 @@ in {
     '';
   };
 
+  programs.git = {
+    enable = true;
+    settings = {
+      init.defaultBranch = "main";
+      user = {
+        name  = "julsen7";
+        email = "263753131+julsen7@users.noreply.github.com";
+      };
+      "credential \"https://github.com\"" = {
+          helper = "${pkgs.github-cli}/bin/gh auth git-credential";
+      };
+      "credential \"https://gist.github.com\"" = {
+          helper = "${pkgs.github-cli}/bin/gh auth git-credential";
+      };
+    };
+  };
+
+  programs.vscode = {
+    enable = true;
+    userSettings = {
+      "explorer.confirmDelete" = false;
+      "workbench.iconTheme" = "material-icon-theme";
+      "workbench.secondarySideBar.defaultVisibility" = "hidden";
+      "explorer.confirmDragAndDrop" = false;
+      "git.confirmSync" = false;
+      "git.autofetch" = true;
+      "editor.fontFamily" = "'JetBrainsMono Nerd Font Propo', 'Droid Sans Mono', monospace";
+      "explorer.confirmPasteNative" = false;
+      "latex-workshop.latex.autoBuild.run" = "onFileChange";
+      "files.autoSave" = "afterDelay";
+      "workbench.startupEditor" = "none";
+      "files.exclude" = {
+        "**/.git" = false;
+      };
+      "latex-workshop.formatting.latex" = "tex-fmt";
+      "github.copilot.enable" = {
+        "*" = false;
+        "plaintext" = false;
+        "markdown" = false;
+        "scminput" = false;
+      };
+      "workbench.colorTheme" = "GitHub Dark Default";
+      "Lua.workspace.library" = [
+        "/usr/share/hypr/stubs"
+      ];
+      "files.simpleDialog.enable" = true;
+    };
+    profiles.default.extensions = with pkgs.vscode-extensions; [
+      cweijan.dbclient-jdbc
+      cweijan.vscode-database-client2
+      davidanson.vscode-markdownlint
+      eamodio.gitlens
+      ecmel.vscode-html-css
+      github.github-vscode-theme
+      haskell.haskell
+      james-yu.latex-workshop
+      ms-python.debugpy
+      ms-python.python
+      ms-python.vscode-pylance
+      ms-python.vscode-python-envs
+      ms-vscode.cmake-tools
+      ms-vscode.cpp-devtools
+      ms-vscode.cpptools
+      ms-vscode.cpptools-extension-pack
+      ms-vscode.cpptools-themes
+      pkief.material-icon-theme
+      rebornix.prolog
+      redhat.java
+      ritwickdey.liveserver
+      sumneko.lua
+      tamasfe.even-better-toml
+      vscjava.vscode-gradle
+      vscjava.vscode-java-debug
+      vscjava.vscode-java-dependency
+      vscjava.vscode-java-pack
+      vscjava.vscode-java-test
+      vscjava.vscode-maven
+      zion-school.logo-lang
+    ];
+  };
+
+  services.dunst = {
+    enable = true;
+    settings = {
+      global = {
+        monitor = 0;
+        enable_posix_regex = true;
+        width = 400;
+        height = "(0, 300)";
+        offset = "(4, 10)";
+        icon_corner_radius = 10;
+        frame_width = 0;
+        gap_size = 5;
+        font = "JetBrainsMono Nerd Font Propo 10";
+        dmenu = "${pkgs.rofi}/bin/rofi -dmenu -p dunst:";
+        corner_radius = 20;
+        icon_path = "/usr/share/icons/Adwaita/16x16/devices/";
+        icon_theme = "Adwaita, breeze";
+        enable_recursive_icon_lookup = true;
+        min_icon_size = 32;
+        max_icon_size = 64;
+        fullscreen = "suppress";
+      };
+      
+      fullscreen_critical = {
+        msg_urgency = "critical";
+        fullscreen = "show";
+      };
+
+      urgency_low = {
+        background = "#19120d";
+        foreground = "#f0dfd7";
+      };
+
+      urgency_normal = {
+        background = "#19120d";
+        foreground = "#f0dfd7";
+        override_pause_level = 30;
+      };
+
+      urgency_critical = {
+        background = "#19120d";
+        foreground = "#f0dfd7";
+        timeout = 0;
+        override_pause_level = 60;
+      };
+    };
+  };
+
+  # easyeffects
+
+  programs.fastfetch = {
+    enable = true;
+    settings = {
+      logo = {
+        # type = "none";
+        source = "nixos_small";
+      };
+      display = {
+        separator = " ";
+      };
+      modules = [
+        {
+            type = "custom";
+            key = " ";
+        }
+        {
+            type = "custom";
+            key = "    ___              __  ";
+        }
+        {
+            type = "custom";
+            key = "   /   |  __________/ /_ ";
+        }
+        {
+            type = "custom";
+            key = "  / /| | / ___/ ___/ __ \\";
+        }
+        {
+            type = "custom";
+            key = " / ___ |/ /  / /__/ / / /";
+        }
+        {
+            type = "custom";
+            key = "/_/  |_/_/   \\___/_/ /_/ ";
+        }
+        {
+            type = "custom";
+            key = " ";
+        }
+        {
+            type = "custom";
+            key = "╭────────────╮";
+        }
+        {
+            type = "title";
+            key = "│ {#34}  user    {#keys}│";
+            format = "{user-name}";
+        }
+        {
+            type = "title";
+            key = "│ {#34}󰇅  hname   {#keys}│";
+            format = "{host-name}";
+        }
+        {
+            type = "uptime";
+            key = "│ {#34}󰅐  uptime  {#keys}│";
+        }
+        {
+            type = "os";
+            key = "│ {#34}{icon}  distro  {#keys}│";
+        }
+        {
+            type = "kernel";
+            key = "│ {#34}  kernel  {#keys}│";
+        }
+        {
+            type = "wm";
+            key = "│ {#34}  wm      {#keys}│";
+        }
+        {
+            type = "de";
+            key = "│ {#34}󰇄  desktop {#keys}│";
+        }
+        {
+            type = "terminal";
+            key = "│ {#34}  term    {#keys}│";
+        }
+        {
+            type = "shell";
+            key = "│ {#34}  shell   {#keys}│";
+        }
+        {
+            type = "packages";
+            key = "│ {#34}󰏓  pkgs    {#keys}│";
+        }
+        {
+            type = "cpu";
+            key = "│ {#34}󰍛  cpu     {#keys}│";
+            showPeCoreCount = true;
+        }
+        {
+            type = "gpu";
+            key = "│ {#34}󰍛  gpu     {#keys}│";
+            showPeCoreCount = true;
+        }
+        {
+            type = "disk";
+            key = "│ {#34}󰉉  disk    {#keys}│";
+            folders = "/";
+        }
+        {
+            type = "memory";
+            key = "│ {#34}  memory  {#keys}│";
+        }
+        {
+            type = "custom";
+            key = "├────────────┤";
+        }
+        {
+            type = "colors";
+            key = "│ {#34} colors   {#keys}│";
+            symbol = "circle";
+        }
+        {
+            type = "custom";
+            key = "╰────────────╯";
+        }
+      ];
+    };
+  };
+
+  # hyprland
+
+  # programs.hyprlock = {
+  #   enable = true;
+  #   settings = {
+  #     general = {
+  #       hide_cursor = true;
+  #       ignore_empty_input = true;
+  #     };
+
+  #     animations = {
+  #       enabled = true;
+  #       fade_in = {
+  #         duration = 300;
+  #         bezier = "easeOutQuint";
+  #       };
+  #       fade_out = {
+  #         duration = 300;
+  #         bezier = "easeOutQuint";
+  #       };
+  #     };
+
+  #     background = [
+  #       {
+  #         path = "screenshot";
+  #         blur_passes = 3;
+  #         blur_size = 8;
+  #       }
+  #     ];
+
+  #     input-field = [
+  #       {
+  #         size = "250, 50";
+  #         position = "0, -80";
+  #         monitor = "";
+  #         dots_center = true;
+  #         fade_on_empty = false;
+  #         font_color = "rgb(202, 211, 245)";
+  #         inner_color = "rgb(91, 96, 120)";
+  #         outer_color = "rgb(24, 25, 38)";
+  #         outline_thickness = 5;
+  #         placeholder_text = ''<span foreground="##cad3f5">Password...</span>'';
+  #         shadow_passes = 2;
+  #       }
+  #     ];
+  #   };
+  # };
+
+  programs.kitty = {
+    enable = true;
+
+    font = {
+      name = "JetBrainsMono Nerd Font";
+      size = 11;
+    };
+
+    settings = {
+      disable_ligatures = "never";
+
+      cursor_stop_blinking_after = 0;
+      cursor_trail = 10;
+      
+      mouse_hide_wait = "3.0";
+      
+      enable_audio_bell = false;
+      
+      window_padding_width = 30;
+      confirm_os_window_close = 0;
+      
+      shell = "zsh";
+    };
+
+    extraConfig = ''
+      include current-theme.conf
+    '';
+  };
+
   programs.eza = {
     enable = true;
     enableZshIntegration = true;
@@ -212,67 +513,126 @@ in {
     enableZshIntegration = true;
   };
 
-  programs.fastfetch = {
+  # matugen
+
+  programs.obs-studio = {
     enable = true;
-    settings = {
-      logo = {
-        source = "nixos_small";
-        padding = {
-          right = 1;
-        };
+
+    package = (
+      pkgs.obs-studio.override {
+        cudaSupport = true;
+      }
+    );
+
+    plugins = with pkgs.obs-studio-plugins; [
+      wlrobs
+      obs-backgroundremoval
+      obs-pipewire-audio-capture
+      obs-vaapi
+      obs-gstreamer
+      obs-vkcapture
+    ];
+  };
+
+  programs.rofi = {
+    enable = true;
+    
+    extraConfig = {
+      modes = [ "drun" "window" ];
+      drun-display-format = "{name}";
+    };
+
+    theme = {
+      "@import" = "colors.rasi";
+
+      "*" = {
+        font = "JetBrainsMono Nerd Font Propo 12";
+        border-radius = "20px";
       };
-      display = {
-        size = {
-          binaryPrefix = "si";
-        };
-        color = "blue";
-        separator = "  ";
+
+      "window" = {
+        width = "800px";
+        background-color = "@surface";
+        border = 0;
+        children = [ "mainbox" ];
       };
-      modules = [
-        {
-          type = "datetime";
-          key = "Date";
-          format = "{1}-{3}-{11}";
-        }
-        {
-          type = "datetime";
-          key = "Time";
-          format = "{14}:{17}:{20}";
-        }
-        "break"
-        "player"
-        "media"
-      ];
+
+      "mainbox" = {
+        padding = "24px";
+        spacing = "20px";
+        children = [ "inputbar" "listview" ];
+      };
+
+      "inputbar" = {
+        children = [ "entry" ];
+      };
+
+      "entry" = {
+        padding = "10px 50px";
+        background-color = "@surface-container";
+        placeholder-color = "@on-surface";
+        text-color = "@on-surface";
+        placeholder = "Search...";
+      };
+
+      "listview" = {
+        spacing = "16px";
+        layout = "vertical";
+        border = 0;
+        background-color = "transparent";
+        columns = 4;
+        scrollbar = false;
+        lines = 3;
+        flow = "horizontal";
+        fixed-columns = true;
+      };
+
+      "element" = {
+        padding = "24px 16px";
+        orientation = "vertical";
+        spacing = "16px";
+        border-radius = "20px";
+        children = [ "element-icon" "element-text" ];
+      };
+
+      "element-icon" = {
+        size = "48px";
+        horizontal-align = "0.5";
+      };
+
+      "element-text" = {
+        horizontal-align = "0.5";
+      };
+
+      "element normal.normal, element alternate.normal, element normal.active, element alternate.active" = {
+        background-color = "@surface";
+      };
+
+      "element-text normal.normal, element-text alternate.normal, element-text normal.active, element-text alternate.active" = {
+        text-color = "@on-surface";
+      };
+
+      "element selected.normal, element selected.alternate, element selected.active" = {
+        border = "2px";
+        border-color = "@on-surface";
+        background-color = "@surface-container";
+      };
+
+      "element-text selected.normal, element-text selected.alternate, element-text selected.active" = {
+        text-color = "@on-surface";
+      };
     };
   };
 
-  programs.kitty = {
+  programs.spicetify = {
     enable = true;
-
-    font = {
-      name = "JetBrainsMono Nerd Font";
-      size = 11;
-    };
-
-    settings = {
-      dynamic_background_opacity = true;
-      enable_audio_bell = false;
-      mouse_hide_wait = "3.0";
-      window_padding_width = 30;
-      
-      disable_ligatures = "never";
-      
-      cursor_stop_blinking_after = 0;
-      cursor_trail = 10;
-      
-      confirm_os_window_close = 0;
-      
-      shell = "zsh";
-    };
-
-    extraConfig = ''
-      include current-theme.conf
-    '';
+    enabledExtensions = with spicePkgs.extensions; [
+      adblockify
+      hidePodcasts
+      shuffle
+    ];
+    theme = ./dotfiles/spicetify/Themes/Theme;
+    colorScheme = "Theme";
   };
 
   programs.starship = {
@@ -358,7 +718,7 @@ in {
         symbol = "󰌠";
         style = "#ffd43b";
       };
-      lycmd_duration = {
+      cmd_duration = {
         format = " 󱦟 [$duration]($style) ";
       };
       time = {
@@ -370,9 +730,6 @@ in {
 
   services.udiskie = {
     enable = true;
-    tray = "auto";
-    automount = true;
-    notify = true;
     settings = {
       program_options = {
         file_manager = "${pkgs.kitty}/bin/kitty -e ${pkgs.yazi}/bin/yazi";
@@ -380,6 +737,177 @@ in {
       };
     };
   };
+
+  programs.waybar = {
+    enable = true;
+    settings = {
+      mainBar = {
+        layer = "top";
+        margin-top = 10;
+        margin-left = 10;
+        margin-right = 10;
+        margin-bottom = 0;
+        spacing = 5;
+
+        modules-left = [
+          "custom/arch-icon"
+          "mpris"
+          "custom/weather"
+          "tray"
+        ];
+        modules-center = [
+          "clock"
+          "hyprland/workspaces"
+        ];
+        modules-right = [
+          "group/audio"
+          "bluetooth"
+          "network"
+          "battery"
+        ];
+
+        # =========================================================================
+        # MODULES LEFT
+        # =========================================================================
+        "custom/arch-icon" = {
+          format = "󰣇";
+          on-click = "uwsm app -- kitty";
+          tooltip = false;
+        };
+
+        mpris = {
+          format = "{player_icon} {status_icon} {title} - {artist} <span color='#808080'>{position}|{length}</span>";
+          interval = 1;
+          max-length = 40;
+          player-icons = {
+            spotify = "";
+            firefox = "";
+          };
+          status-icons = {
+            playing = "";
+            paused = "";
+          };
+        };
+
+        "custom/weather" = {
+          exec = "\${config.xdg.configHome}/waybar/scripts/weather.sh";
+          format = "{}";
+          return-type = "json";
+          interval = 1800;
+          tooltip = true;
+        };
+
+        tray = {
+          spacing = 10;
+          show-passive-items = false;
+        };
+
+        # =========================================================================
+        # MODULES CENTER
+        # =========================================================================
+        "hyprland/workspaces" = {
+          format = "{windows}";
+          on-click = "hyprctl dispatch hl.dsp.focus({ workspace = {icon} })";
+          window-rewrite-default = "";
+          window-rewrite = {
+            "class<kitty>" = "";
+            "class<zen>" = "";
+            "class<code>" = "󰨞";
+            "class<spotify>" = "";
+            "class<discord>" = "";
+            "class<obs>" = "󱜠";
+            "class<blender>" = "󰂫";
+            "class<steam>" = "";
+            "class<krita>" = "";
+            "class<gimp>" = "";
+            "class<.*virtu.*>" = "󰍺";
+            "class<.*prism.*>" = "";
+            "title<.*minecraft.*>" = "󰍳";
+            "class<zen> title<.*youtube.*>" = "";
+            "class<zen> title<.*twitch.*>" = "";
+            "class<zen> title<.*gmail.*>" = "󰊫";
+            "class<zen> title<.*moodle.*>" = "";
+          };
+        };
+
+        clock = {
+          tooltip = false;
+        };
+
+        # =========================================================================
+        # MODULES RIGHT
+        # =========================================================================
+        "group/audio" = {
+          orientation = "horizontal";
+          modules = [
+            "pulseaudio"
+            "pulseaudio/slider"
+            "pulseaudio#microphone"
+          ];
+        };
+
+        pulseaudio = {
+          format = "{icon}";
+          format-muted = "";
+          format-bluetooth = "{icon}";
+          format-icons = {
+            headphone = "󰋋";
+            headset = "󰋎";
+            default = [
+              ""
+              ""
+              ""
+            ];
+          };
+          tooltip-format = "{desc}";
+          on-click = "wpctl set-mute @DEFAULT_SINK@ toggle";
+          on-click-right = "uwsm app -- kitty --title=wiremix -e wiremix";
+        };
+
+        "pulseaudio#microphone" = {
+          format = "{format_source}";
+          format-source = "";
+          format-source-muted = "";
+          tooltip-format = "{source_desc}";
+          on-click = "wpctl set-mute @DEFAULT_SOURCE@ toggle";
+          on-click-right = "uwsm app -- kitty --title=wiremix -e wiremix";
+        };
+
+        bluetooth = {
+          format = "󰂯 {num_connections}";
+          on-click = "uwsm app -- kitty --title=bluetui -e bluetui";
+          tooltip-format-connected = "{controller_alias}\t{controller_address}\n{device_enumerate}";
+          tooltip-format-enumerate-connected = "{device_alias}";
+        };
+
+        network = {
+          format = "";
+          format-ethernet = "󰌗";
+          format-wifi = " {essid}";
+          tooltip-format-ethernet = " {bandwidthDownBytes}  {bandwidthUpBytes}";
+          tooltip-format-wifi = " {bandwidthDownBytes}  {bandwidthUpBytes} | {signalStrength}%";
+          on-click = "uwsm app -- kitty --title=nmtui-go -e nmtui-go";
+        };
+
+        battery = {
+          format = "{icon} {capacity}%";
+          states = {
+            warning = 30;
+            critical = 15;
+          };
+          format-icons = [
+            ""
+            ""
+            ""
+            ""
+            ""
+          ];
+        };
+      };
+    };
+  };
+
+  # wireplumber
 
   programs.yazi = {
     enable = true;
@@ -392,7 +920,7 @@ in {
       opener = {
         vscode = [
           {
-            run = "${pkgs.vscode}/bin/code %s";
+            run = "uwsm app -- code %s";
             orphan = true;
             for = "unix";
           }
@@ -407,70 +935,5 @@ in {
         ];
       };
     };
-  };
-
-  # programs.hyprlock = {
-  #   enable = true;
-  #   settings = {
-  #     general = {
-  #       hide_cursor = true;
-  #       ignore_empty_input = true;
-  #     };
-
-  #     animations = {
-  #       enabled = true;
-  #       fade_in = {
-  #         duration = 300;
-  #         bezier = "easeOutQuint";
-  #       };
-  #       fade_out = {
-  #         duration = 300;
-  #         bezier = "easeOutQuint";
-  #       };
-  #     };
-
-  #     background = [
-  #       {
-  #         path = "screenshot";
-  #         blur_passes = 3;
-  #         blur_size = 8;
-  #       }
-  #     ];
-
-  #     input-field = [
-  #       {
-  #         size = "250, 50";
-  #         position = "0, -80";
-  #         monitor = "";
-  #         dots_center = true;
-  #         fade_on_empty = false;
-  #         font_color = "rgb(202, 211, 245)";
-  #         inner_color = "rgb(91, 96, 120)";
-  #         outer_color = "rgb(24, 25, 38)";
-  #         outline_thickness = 5;
-  #         placeholder_text = ''<span foreground="##cad3f5">Password...</span>'';
-  #         shadow_passes = 2;
-  #       }
-  #     ];
-  #   };
-  # };
-
-  programs.obs-studio = {
-    enable = true;
-
-    package = (
-      pkgs.obs-studio.override {
-        cudaSupport = true;
-      }
-    );
-
-    plugins = with pkgs.obs-studio-plugins; [
-      wlrobs
-      obs-backgroundremoval
-      obs-pipewire-audio-capture
-      obs-vaapi
-      obs-gstreamer
-      obs-vkcapture
-    ];
   };
 }

@@ -18,7 +18,7 @@
     };
   };
 
-  outputs = inputs@{ nixpkgs, home-manager, spicetify-nix, snappy-switcher, ... }: {
+  outputs = { nixpkgs, home-manager, spicetify-nix, snappy-switcher, ... } @ inputs: {
     nixosConfigurations = {
       desktop = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
