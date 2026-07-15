@@ -222,6 +222,7 @@ in {
         ecmel.vscode-html-css
         github.github-vscode-theme
         haskell.haskell
+        haskell.language-haskell # Neu hinzugefügt aus deinem Screenshot
         james-yu.latex-workshop
         ms-python.debugpy
         ms-python.python
@@ -243,49 +244,49 @@ in {
         {
           name = "dbclient-jdbc";
           publisher = "cweijan";
-          version = "4.5.3";
+          version = "1.4.6";
           sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
         }
         {
           name = "vscode-database-client2";
           publisher = "cweijan";
-          version = "4.5.3";
-          sha256 = "sha256-hurTrNC1xhq7g9EFa8nQg6nTNmzCpVym7jXcmBxWxlI=";
+          version = "9.0.2";
+          sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
         }
         {
           name = "vscode-python-envs";
           publisher = "ms-python";
-          version = "2024.2.2";
+          version = "1.3.6";
           sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
         }
         {
           name = "cpp-devtools";
           publisher = "ms-vscode";
-          version = "0.0.1";
+          version = "0.5.13";
           sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
         }
         {
           name = "cpptools-extension-pack";
           publisher = "ms-vscode";
-          version = "1.3.0";
+          version = "1.5.1";
           sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
         }
         {
           name = "cpptools-themes";
           publisher = "ms-vscode";
-          version = "2.0.0";
+          version = "2.0.0"; 
           sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
         }
         {
           name = "prolog";
           publisher = "rebornix";
-          version = "0.1.1";
+          version = "0.0.4";
           sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
         }
         {
           name = "logo-lang";
           publisher = "zion-school";
-          version = "0.0.3";
+          version = "0.8.1";
           sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
         }
       ]);
