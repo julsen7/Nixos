@@ -22,10 +22,8 @@ EXISTIERT NICHT:
 
 TODO:
 
-- hyprlock
-- wallpaper
+- theme-/wallpaper-skripte
 - matugen
-- rest an dotfiles
 
 - git clone <https://github.com/JafarAkhondali/acer-predator-turbo-and-rgb-keyboard-linux-module>
 - cd "acer-predator-turbo-and-rgb-keyboard-linux-module"
