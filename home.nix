@@ -268,7 +268,7 @@ in {
           name = "prolog";
           publisher = "rebornix";
           version = "0.0.4";
-          sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+          sha256 = "sha256-SZAaG3dFlDbA46s+i36CMBOU5vJ+1bgTgk+TTyi+yhA=";
         }
         {
           name = "logo-lang";
