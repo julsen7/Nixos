@@ -48,7 +48,6 @@ in {
     brightnessctl
     awww
     btop
-    chromium
     discord
     cliphist
     dunst
@@ -75,7 +74,7 @@ in {
     obsidian
     _7zz
     prismlauncher
-    bluetui # ? bluetuith
+    bluetui
     vscode
     waybar
     wiremix
