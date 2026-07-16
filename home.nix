@@ -110,7 +110,13 @@ in {
     # '';
     "wallpaper".source = ./wallpaper;
     "scripts".source = ./scripts;
+    "themes".source = ./themes;
   };
+
+  home.packages = [
+    (pkgs.writeShellScriptBin "theme-switcher" (builtins.readFile ./scripts/theme.sh))
+    (pkgs.writeShellScriptBin "wallpaper-switcher" (builtins.readFile ./scripts/wallpaper.sh))
+  ];
 
   wayland.windowManager.hyprland.systemd.enable = false;
 
@@ -132,8 +138,6 @@ in {
     "snappy-switcher".source = ./dotfiles/snappy-switcher;
     "uwsm/env".source = "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
     "waybar/style.css".source = ./dotfiles/waybar/style.css;
-    "waybar/colors.css".source = ./dotfiles/waybar/colors.css;
-    "waybar/scripts".source = ./dotfiles/waybar/scripts;
   };
 
   programs.zsh = {

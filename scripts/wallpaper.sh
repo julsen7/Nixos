@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-WALLPAPER_DIR="$HOME/Dotfiles/wallpaper"
+WALLPAPER_DIR="$HOME/wallpaper"
 
 if [[ ! -d "$WALLPAPER_DIR" ]]; then
     dunstify "Wallpaper Error" "Folder $WALLPAPER_DIR does not exist!" -u critical
@@ -12,7 +12,7 @@ WALLPAPERS=( "$WALLPAPER_DIR"/*.{png,jpg,jpeg,webp} )
 shopt -u nullglob
 
 if (( ${#WALLPAPERS[@]} == 0 )); then
-    dunstify "Wallpaper Error" "Folder $WALLPAPER_DIR does not contain correct images!" -u critical
+    dunstify "Wallpaper Error" "Folder $WALLPAPER_DIR does not contain any images!" -u critical
     exit 1
 fi
 
