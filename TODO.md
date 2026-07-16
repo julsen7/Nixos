@@ -1,6 +1,6 @@
 # TODO
 
-## BUGS & FEATUREs
+## BUGS & FEATURES
 
 - waybar clickable workspace
 - waybar spotify dbus error mpris
