@@ -109,6 +109,7 @@ in {
     #   org.gradle.daemon.idletimeout=3600000
     # '';
     "wallpaper".source = ./wallpaper;
+    "scripts".source = ./scripts;
   };
 
   wayland.windowManager.hyprland.systemd.enable = false;
