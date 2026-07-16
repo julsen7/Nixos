@@ -93,7 +93,7 @@ hl.bind("SUPER + V", hl.dsp.exec_cmd("uwsm app -- cliphist list | rofi -dmenu -d
 
 hl.bind("SUPER + Q", hl.dsp.exec_cmd("uwsm app -- kitty"))
 hl.bind("SUPER + E", hl.dsp.exec_cmd("uwsm app -- kitty -e yazi"))
-hl.bind("SUPER + B", hl.dsp.exec_cmd("uwsm app -- zen-browser"))
+hl.bind("SUPER + B", hl.dsp.exec_cmd("uwsm app -- zen"))
 hl.bind("SUPER + M", hl.dsp.exec_cmd("uwsm app -- spotify"))
 hl.bind("SUPER + D", hl.dsp.exec_cmd("uwsm app -- discord"))
 hl.bind("SUPER + C", hl.dsp.exec_cmd("uwsm app -- code"))
