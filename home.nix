@@ -135,7 +135,6 @@ in {
     "hypr/hyprland.lua".source = ./dotfiles/hypr/hyprland.lua;
     "matugen".source = ./dotfiles/matugen;
     "obs-studio/basic".source = ./dotfiles/obs-studio/basic;
-    "rofi/config.rasi".source = ./dotfiles/rofi/config.rasi;
     "snappy-switcher".source = ./dotfiles/snappy-switcher;
     "spicetify".source = ./dotfiles/spicetify;
     "waybar/scripts".source = ./dotfiles/waybar/scripts;
