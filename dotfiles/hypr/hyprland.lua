@@ -1,4 +1,10 @@
-local colors = require("colors")
+local success, colors = pcall(require, "colors")
+
+if not success then
+    colors = {
+        primary_container = "0xee1a1a1a"
+    }
+end
 
 hl.monitor({
     output   = "HDMI-A-1",
