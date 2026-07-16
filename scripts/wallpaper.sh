@@ -41,5 +41,18 @@ if [[ -n "$SELECTED_NAME" ]]; then
     cp -f "$COLORFUL_THEME_DIR/rofi.rasi" "$HOME/.config/rofi/colors.rasi"
     cp -f "$COLORFUL_THEME_DIR/waybar.css" "$HOME/.config/waybar/colors.css"
 
+    chmod +w "$HOME/.config/dunst/dunstrc" \
+             "$HOME/.config/hypr/colors.lua" \
+             "$HOME/.config/hypr/colors.conf" \
+             "$HOME/.config/kitty/current-theme.conf" \
+             "$HOME/.config/rofi/colors.rasi" \
+             "$HOME/.config/waybar/colors.css"
+
+    dunstctl reload
+    kitty +kitten themes --reload-in=all
+    # killall -SIGUSR1 kitty 2>/dev/null
+    spicetify watch -s 2>&1 | sed "/Reloaded Spotify/q"
+    pkill -SIGUSR2 waybar
+
     dunstify "Wallpaper" "Set $SELECTED_NAME as wallpaper" -i "$WALLPAPER_PATH"
 fi
