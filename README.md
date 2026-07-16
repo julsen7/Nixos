@@ -14,19 +14,3 @@ lsblk -f
 
 sudo nixos-install --flake github:julsen7/nixos-config#HOST
 ```
-
-EXISTIERT NICHT:
-
-- durdraw
-- nmtui-go
-
-TODO:
-
-- theme-/wallpaper-skripte
-- matugen
-
-- git clone <https://github.com/JafarAkhondali/acer-predator-turbo-and-rgb-keyboard-linux-module>
-- cd "acer-predator-turbo-and-rgb-keyboard-linux-module"
-- chmod +x ./*.sh
-- sudo ./install.sh
-- ./facer_rgb.py -m 3

@@ -61,7 +61,7 @@ if [[ -n "$SELECTED_THEME" ]]; then
 
     if [[ -n "$DISPLAY" || -n "$WAYLAND_DISPLAY" ]]; then
         dunstctl reload
-        killall -SIGUSR1 kitty 2>/dev/null
+        pkill -SIGUSR1 kitty
         spicetify watch -s 2>&1 | sed "/Reloaded Spotify/q"
         pkill -SIGUSR2 waybar
     fi
