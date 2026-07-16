@@ -23,7 +23,7 @@ hl.monitor({
 })
 
 hl.on("hyprland.start", function()
-    hl.exec_cmd("/home/julsen/scripts/wallpaper.sh /home/julsen/wallpaper/DarkTree.png")
+    hl.exec_cmd("$HOME/scripts/wallpaper.sh /home/julsen/wallpaper/DarkTree.png")
     
     hl.exec_cmd("gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'")
     hl.exec_cmd("gsettings set org.gnome.desktop.interface cursor-theme 'Bibata-Modern-Ice'")
