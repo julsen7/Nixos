@@ -103,7 +103,6 @@ for i = 1, 6 do
     hl.bind("SUPER + SHIFT + " .. i, hl.dsp.window.move({ workspace = i }))
 end
 
-
 hl.gesture({ fingers = 3, direction = "horizontal", action = "workspace" })
 hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"),
     { locked = true, repeating = true })
