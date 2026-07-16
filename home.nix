@@ -37,23 +37,6 @@ in {
     package = pkgs.bibata-cursors;
   };
 
-  # DEFAULT WALLPAPER
-
-  home.activation = {
-    setupDefaultTheme = lib.hm.dag.entryAfter ["writeBoundary"] ''
-      if [ ! -f "$HOME/.config/hypr/colors.lua" ]; then
-          echo "Initializing system with default-wallpaper..."
-          
-          # Nix injects the absolute store path of the image here
-          DEFAULT_WALLPAPER="${./wallpaper/DarkTree.png}"
-
-          # Fix: Run bash explicitly and pass the Nix store path of your script
-          # Use $DRY_RUN_CMD so 'home-manager build' doesn't break
-          $DRY_RUN_CMD ${pkgs.bash}/bin/bash ${./scripts/wallpaper.sh} "$DEFAULT_WALLPAPER"
-      fi
-    '';
-  };
-
   # PACKAGES
 
   programs.home-manager.enable = true;
