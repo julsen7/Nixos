@@ -108,6 +108,7 @@ in {
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
     # '';
+    "wallpaper".source = ./wallpaper;
   };
 
   wayland.windowManager.hyprland.systemd.enable = false;
@@ -132,7 +133,6 @@ in {
     "waybar/style.css".source = ./dotfiles/waybar/style.css;
     "waybar/colors.css".source = ./dotfiles/waybar/colors.css;
     "waybar/scripts".source = ./dotfiles/waybar/scripts;
-    "wallpaper".source = ./wallpaper;
   };
 
   programs.zsh = {
