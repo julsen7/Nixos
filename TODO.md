@@ -11,7 +11,6 @@
 - rofi theme bug falls back to default
 - refactor hyprland.lua
 - default wallpaper and colorful-theme
-- zsh-dotfiles maybe possible in .config/zsh-folder
 - ly-configuration
 - daws
 - rofi: style von <https://github.com/adi1090x/rofi> und andere overlays (1:6, 1:8, 2:2, 2:8, 2:9, 3:10, 5:4, 6:1, 6:7, 6:9, 7:1, 7:2, 7:3, 7:5, 7:6)
