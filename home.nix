@@ -132,6 +132,8 @@ in {
     "uwsm/env".source = "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
   };
 
+  # PROGRAMS
+
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -468,6 +470,63 @@ in {
   wayland.windowManager.hyprland = {
     enable = true;
     systemd.enable = false;
+    settings = {
+      bind = [
+        {
+          _args = [
+            (lib.generators.mkLuaInline "mod .. \" + Q\"")
+            (lib.generators.mkLuaInline "hl.dsp.window.close()")
+            { locked = true; }
+          ];
+        }
+        {
+          _args = [
+            "SUPER + RETURN"
+            (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"kitty\")")
+          ];
+        }
+        {
+          _args = [
+            "ALT + R"
+            (lib.generators.mkLuaInline "hl.dsp.submap(\"resize\")")
+          ];
+        }
+      ];
+      on = [
+        {
+          _args = [
+            "hyprland.start"
+            (lib.generators.mkLuaInline "function()\n  hl.exec_cmd(\"waybar\")\nend")
+          ];
+        }
+        {
+          _args = [
+            "hyprland.start"
+            (lib.generators.mkLuaInline "function()\n  hl.exec_cmd(\"waybar\")\nend")
+          ];
+        }
+      ];
+
+      config = {
+        general = {
+            border_size      = 0;
+            gaps_in          = 5;
+            gaps_out         = 10;
+            resize_on_border = true;
+        };
+        decoration = {
+            rounding = 20;
+            shadow   = {
+                enabled = true;
+                range = 10;
+                color = colors.primary_container;
+            };
+        };
+        input = {
+            kb_layout = "de";
+        };
+      };
+    };
   };
 
   programs.hyprlock = {
