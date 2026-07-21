@@ -819,7 +819,7 @@ in {
           border = mkLiteral "2px";
           border-color = mkLiteral "@on-surface";
           background-color = mkLiteral "@surface-container";
-      }
+      };
 
       "element-text selected.normal,
       element-text selected.alternate,
