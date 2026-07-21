@@ -772,7 +772,7 @@ in {
 
       "#listview" = {
         spacing = mkLiteral "16px";
-        layout = vertical;
+        layout = mkLiteral "vertical";
         border = 0;
         background-color = transparent;
         columns = 4;
@@ -784,7 +784,7 @@ in {
 
       "#element" = {
         padding = mkLiteral "24px 16px";
-        orientation = vertical;
+        orientation = mkLiteral "vertical";
         spacing = "16px";
         border-radius = "20px";
         children = map mkLiteral [ "element-icon" "element-text" ];
