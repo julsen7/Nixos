@@ -816,7 +816,7 @@ in {
       "element-text selected.normal, element-text selected.alternate, element-text selected.active" = {
         text-color = mkLiteral "@on-surface";
       };
-    }
+    };
   };
 
   programs.spicetify = {
