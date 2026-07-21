@@ -99,9 +99,9 @@ in {
     # python ?
     # maven ?
     # gradle
-    libosinfo
-    bridge-utils
-    dnsmasq
+    # libosinfo
+    # bridge-utils
+    # dnsmasq
     (texliveMedium.withPackages (ps: with ps; [
       biber
       collection-latexextra

@@ -4,9 +4,7 @@
 
 - waybar clickable workspace
 - waybar spotify dbus error mpris
-- nixos-style: matugen, obs-studio, snappy-switcher, spicetify
 - test virt-manager rest qemu packages
-- rofi theme bug falls back to default
 - refactor hyprland.lua
 - default wallpaper and colorful-theme
 - daws
