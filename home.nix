@@ -741,90 +741,80 @@ in {
       inherit (config.lib.formats.rasi) mkLiteral;
     in {
       "*" = {
-          font = "JetBrainsMono Nerd Font Propo 12";
-          border-radius = mkLiteral "20px";
+        font = "JetBrainsMono Nerd Font Propo 12";
+        border-radius = mkLiteral "20px";
       };
 
       "#window" = {
-          width = mkLiteral "800px";
-          background-color = "@surface";
-          border = 0;
-          children = map mkLiteral [ "mainbox" ];
+        width = mkLiteral "800px";
+        background-color = "@surface";
+        border = 0;
+        children = map mkLiteral [ "mainbox" ];
       };
 
       "#mainbox" = {
-          padding = "24px";
-          spacing = "20px";
-          children = map mkLiteral [ "inputbar" "listview" ];
+        padding = "24px";
+        spacing = "20px";
+        children = map mkLiteral [ "inputbar" "listview" ];
       };
 
       "#inputbar" = {
-          children = map mkLiteral [ "entry" ];
+        children = map mkLiteral [ "entry" ];
       };
 
       "#entry" = {
-          padding = mkLiteral "10px 50px";
-          background-color = mkLiteral "@surface-container";
-          placeholder-color = mkLiteral "@on-surface";
-          text-color = mkLiteral "@on-surface";
-          placeholder = "Search...";
+        padding = mkLiteral "10px 50px";
+        background-color = mkLiteral "@surface-container";
+        placeholder-color = mkLiteral "@on-surface";
+        text-color = mkLiteral "@on-surface";
+        placeholder = "Search...";
       };
 
       "#listview" = {
-          spacing = mkLiteral "16px";
-          layout = vertical;
-          border = 0;
-          background-color = transparent;
-          columns = 4;
-          scrollbar = false;
-          lines = 3;
-          flow = horizontal;
-          fixed-columns = true;
+        spacing = mkLiteral "16px";
+        layout = vertical;
+        border = 0;
+        background-color = transparent;
+        columns = 4;
+        scrollbar = false;
+        lines = 3;
+        flow = horizontal;
+        fixed-columns = true;
       };
 
       "#element" = {
-          padding = mkLiteral "24px 16px";
-          orientation = vertical;
-          spacing = "16px";
-          border-radius = "20px";
-          children = map mkLiteral [ "element-icon" "element-text" ];
+        padding = mkLiteral "24px 16px";
+        orientation = vertical;
+        spacing = "16px";
+        border-radius = "20px";
+        children = map mkLiteral [ "element-icon" "element-text" ];
       };
 
       "#element-icon" = {
-          size = "48px";
-          horizontal-align = 0.5;
+        size = "48px";
+        horizontal-align = 0.5;
       };
 
       "#element-text" = {
-          horizontal-align = 0.5;
+        horizontal-align = 0.5;
       }
 
-      "element normal.normal,
-      element alternate.normal,
-      element normal.active,
-      element alternate.active" = {
-          background-color = mkLiteral "@surface";
+      "element normal.normal, element alternate.normal, element normal.active, element alternate.active" = {
+        background-color = mkLiteral "@surface";
       };
 
-      "element-text normal.normal,
-      element-text alternate.normal,
-      element-text normal.active, 
-      element-text alternate.active" = {
-          text-color = mkLiteral "@on-surface";
+      "element-text normal.normal, element-text alternate.normal, element-text normal.active, element-text alternate.active" = {
+        text-color = mkLiteral "@on-surface";
       };
 
-      "element selected.normal,
-      element selected.alternate,
-      element selected.active" = {
-          border = mkLiteral "2px";
-          border-color = mkLiteral "@on-surface";
-          background-color = mkLiteral "@surface-container";
+      "element selected.normal, element selected.alternate, element selected.active" = {
+        border = mkLiteral "2px";
+        border-color = mkLiteral "@on-surface";
+        background-color = mkLiteral "@surface-container";
       };
 
-      "element-text selected.normal,
-      element-text selected.alternate,
-      element-text selected.active" = {
-          text-color = mkLiteral "@on-surface";
+      "element-text selected.normal, element-text selected.alternate, element-text selected.active" = {
+        text-color = mkLiteral "@on-surface";
       };
     }
   };
