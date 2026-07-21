@@ -81,7 +81,14 @@
   services.fwupd.enable = true;
   services.power-profiles-daemon.enable = true;
 
-  services.displayManager.ly.enable = true;
+  services.displayManager.ly = {
+    enable = true;
+    settings = {
+      animation = "matrix";
+      dur_file_path = "blackhole.dur";
+      bigclock = "en";
+    };
+  };
 
   services.pipewire = {
     enable = true;

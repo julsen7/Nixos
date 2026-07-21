@@ -16,7 +16,7 @@ lsblk -f
 sudo nixos-install --flake github:julsen7/nixos#HOST
 ```
 
-Alternativ mit swap:
+Alternatively with swap partition:
 
 ```bash
 sudo -i

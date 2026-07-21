@@ -4,7 +4,7 @@
 
 - waybar clickable workspace
 - waybar spotify dbus error mpris
-- nixos-style: hyprland.lua, matugen, obs-studio, snappy-switcher, spicetify, waybar/style.css and waybar/scripts/weather.sh
+- nixos-style: matugen, obs-studio, snappy-switcher, spicetify
 - test virt-manager rest qemu packages
 - wireplumber settings
 - darkmode zen etc.

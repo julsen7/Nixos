@@ -15,17 +15,30 @@ in {
 
   # THEMING & CURSOR
 
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
+    };
+  };
+
   gtk = {
     enable = true;
     theme = {
       name = "Adwaita-dark";
       package = pkgs.gnome-themes-extra;
     };
+    gtk3.extraConfig = {
+      gtk-application-prefer-dark-theme = 1;
+    };
+    gtk4.extraConfig = {
+      gtk-application-prefer-dark-theme = 1;
+    };
   };
 
   qt = {
     enable = true;
-    platformTheme.name = "gtk3";
+    platformTheme.name = "adwaita";
+    style.name = "adwaita-dark";
   };
 
   home.pointerCursor = {
@@ -717,7 +730,7 @@ in {
     
     extraConfig = {
       modes = [ "drun" "window" ];
-      drun-display-format = "{name}";
+      "drun-display-format" = "{name}";
     };
 
     theme = {
@@ -989,7 +1002,7 @@ in {
         # =========================================================================
         "hyprland/workspaces" = {
           format = "{windows}";
-          on-click = "hyprctl dispatch hl.dsp.focus({ workspace = {icon} })";
+          on-click = "activate";
           window-rewrite-default = "";
           window-rewrite = {
             "class<kitty>" = "";
@@ -1087,6 +1100,7 @@ in {
         };
       };
     };
+
     style = ''
       @import "colors.css";
 
