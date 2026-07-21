@@ -729,102 +729,104 @@ in {
   programs.rofi = {
     enable = true;
 
-    extraConfig = ''
-      @import "colors.rasi"
+    modes = [ "drun" "window" ];
 
-      configuration {
-          modes: [ drun, window ];
-          drun-display-format: "{name}";
+    extraConfig = {
+      "drun" = {
+        display-format =  "{name}";
+      };
+    };
+
+    theme = let 
+      inherit (config.lib.formats.rasi) mkLiteral;
+    in {
+      "*" = {
+          font = "JetBrainsMono Nerd Font Propo 12";
+          border-radius = mkLiteral "20px";
+      };
+
+      "#window" = {
+          width = mkLiteral "800px";
+          background-color = "@surface";
+          border = 0;
+          children = map mkLiteral [ "mainbox" ];
+      };
+
+      "#mainbox" = {
+          padding = "24px";
+          spacing = "20px";
+          children = map mkLiteral [ "inputbar" "listview" ];
+      };
+
+      "#inputbar" = {
+          children = map mkLiteral [ "entry" ];
+      };
+
+      "#entry" = {
+          padding = mkLiteral "10px 50px";
+          background-color = mkLiteral "@surface-container";
+          placeholder-color = mkLiteral "@on-surface";
+          text-color = mkLiteral "@on-surface";
+          placeholder = "Search...";
+      };
+
+      "#listview" = {
+          spacing = mkLiteral "16px";
+          layout = vertical;
+          border = 0;
+          background-color = transparent;
+          columns = 4;
+          scrollbar = false;
+          lines = 3;
+          flow = horizontal;
+          fixed-columns = true;
+      };
+
+      "#element" = {
+          padding = mkLiteral "24px 16px";
+          orientation = vertical;
+          spacing = "16px";
+          border-radius = "20px";
+          children = map mkLiteral [ "element-icon" "element-text" ];
+      };
+
+      "#element-icon" = {
+          size = "48px";
+          horizontal-align = 0.5;
+      };
+
+      "#element-text" {
+          horizontal-align = 0.5;
       }
 
-      * {
-          font: "JetBrainsMono Nerd Font Propo 12";
-          border-radius: 20px;
-      }
-
-      window {
-          width: 800px;
-          background-color: @surface;
-          border: 0;
-          children: [ mainbox ];
-      }
-
-      mainbox {
-          padding: 24px;
-          spacing: 20px;
-          children: [ inputbar, listview ];
-      }
-
-      inputbar {
-          children: [ entry ];
-      }
-
-      entry {
-          padding: 10px 50px;
-          background-color: @surface-container;
-          placeholder-color: @on-surface;
-          text-color: @on-surface;
-          placeholder: "Search...";
-      }
-
-      listview {
-          spacing: 16px;
-          layout: vertical;
-          border: 0;
-          background-color: transparent;
-          columns: 4;
-          scrollbar: false;
-          lines: 3;
-          flow: horizontal;
-          fixed-columns: true;
-      }
-
-      element {
-          padding: 24px 16px;
-          orientation: vertical;
-          spacing: 16px;
-          border-radius: 20px;
-          children: [ element-icon, element-text ];
-      }
-
-      element-icon {
-          size: 48px;
-          horizontal-align: 0.5;
-      }
-
-      element-text {
-          horizontal-align: 0.5;
-      }
-
-      element normal.normal,
+      "element normal.normal,
       element alternate.normal,
       element normal.active,
-      element alternate.active {
-          background-color: @surface;
-      }
+      element alternate.active" = {
+          background-color = mkLiteral "@surface";
+      };
 
-      element-text normal.normal,
+      "element-text normal.normal,
       element-text alternate.normal,
       element-text normal.active, 
-      element-text alternate.active {
-          text-color: @on-surface;
-      }
+      element-text alternate.active" = {
+          text-color = mkLiteral "@on-surface";
+      };
 
-
-      element selected.normal,
+      "element selected.normal,
       element selected.alternate,
-      element selected.active {
-          border: 2px;
-          border-color: @on-surface;
-          background-color: @surface-container;
+      element selected.active" = {
+          border = mkLiteral "2px";
+          border-color = mkLiteral "@on-surface";
+          background-color = mkLiteral "@surface-container";
       }
 
-      element-text selected.normal,
+      "element-text selected.normal,
       element-text selected.alternate,
-      element-text selected.active {
-          text-color: @on-surface;
-      }
-    '';
+      element-text selected.active" = {
+          text-color = mkLiteral "@on-surface";
+      };
+    }
   };
 
   programs.spicetify = {
