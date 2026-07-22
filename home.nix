@@ -523,7 +523,7 @@ in {
       -- Autostart / Startup Events
       -- =========================================================================
       hl.on("hyprland.start", function()
-        -- Clipboard & Daemons (OHNE '&' bei uwsm!)
+        -- Clipboard & Daemons
         hl.exec_cmd("uwsm app -- wl-paste --type text --watch cliphist store")
         hl.exec_cmd("uwsm app -- wl-paste --type image --watch cliphist store")
         hl.exec_cmd("uwsm app -- udiskie")
