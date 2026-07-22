@@ -54,7 +54,7 @@ in {
     nerd-fonts.jetbrains-mono
     brightnessctl
     awww
-    udiskie
+    rofi
     cliphist
     wl-clipboard
     playerctl
@@ -80,13 +80,18 @@ in {
     vlc
     libbluray
     libreoffice-fresh
-    # onlyoffice-desktopeditors
-    # wpsoffice
     keepassxc
     github-cli
     _7zz
+    (texliveMedium.withPackages (ps: with ps; [
+      biber
+      collection-latexextra
+      collection-fontsrecommended
+    ]))
+    tex-fmt
     gcc
     # gnumake
+    # cmake
     # binutils
     # pkg-config
     jdk
@@ -94,13 +99,6 @@ in {
     # python ?
     # maven ?
     # gradle
-    (texliveMedium.withPackages (ps: with ps; [
-      biber
-      collection-latexextra
-      collection-fontsrecommended
-    ]))
-    tex-fmt
-    rofi
   ];
 
   # SYSTEM
