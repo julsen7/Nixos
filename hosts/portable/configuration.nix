@@ -110,8 +110,6 @@
     qemu = {
       package = pkgs.qemu_kvm;
       swtpm.enable = true;
-      ovmf.enable = true;
-      ovmf.packages = [ pkgs.OVMFFull.fd ];
     };
   };
 
@@ -130,7 +128,6 @@
   environment.systemPackages = with pkgs; [
     virt-manager
     qemu
-    OVMF
   ];
 
   nixpkgs.config.allowUnfree = true;
