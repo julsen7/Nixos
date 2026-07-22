@@ -108,21 +108,25 @@
   virtualisation.libvirtd = {
     enable = true;
     qemu = {
-      package = pkgs.qemu_kvm;
-      runAsRoot = true;
       swtpm.enable = true;
     };
   };
+
+  programs.virt-manager.enable = true;
 
   # USER
 
   users.users.julsen = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" ];
+    extraGroups = [ "wheel" "networkmanager" "libvirtd" ];
     hashedPassword = "$y$j9T$n8yEDLyG5/IORRV5SPJ5I.$KEdyBgQbDYMSWWxeZYgW/NpdKltwuBk7RZU7ydNzb5.";
   };
 
   # PACKAGES
+
+  environment.systemPackages = [
+    pkgs.qemu
+  ];
 
   nixpkgs.config.allowUnfree = true;
 
@@ -140,8 +144,6 @@
     withUWSM = true;
     xwayland.enable = true;
   };
-
-  programs.virt-manager.enable = true;
 
   # NIX
 

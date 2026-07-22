@@ -100,9 +100,10 @@ in {
     # python ?
     # maven ?
     # gradle
+    qemu
+    dnsmasq
     # libosinfo
     # bridge-utils
-    # dnsmasq
     (texliveMedium.withPackages (ps: with ps; [
       biber
       collection-latexextra
